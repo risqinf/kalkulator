@@ -1,0 +1,30 @@
+[package]
+name        = "kalkulator"
+version     = "2.0.0"
+edition     = "2021"
+authors     = ["risqinf"]
+description = "Kalkulator CLI Presisi Tinggi — Rust Edition"
+repository  = "https://github.com/risqinf/kalkulator"
+license     = "MIT"
+keywords    = ["calculator", "cli", "precision", "math", "arbitrary-precision"]
+categories  = ["command-line-utilities", "mathematics"]
+
+[[bin]]
+name = "kalkulator"
+path = "src/main.rs"
+
+[dependencies]
+# Arbitrary precision decimal arithmetic (128-bit float default)
+# Tidak memerlukan library C eksternal — murni Rust
+# Gunakan f64 presisi penuh (15-16 digit signifikan)
+# Untuk presisi arbitrer, bisa diganti dengan crate 'rug' atau 'decimal'
+
+[profile.release]
+opt-level = 3
+lto       = true
+codegen-units = 1
+strip     = true
+
+[profile.dev]
+opt-level = 0
+debug     = true
